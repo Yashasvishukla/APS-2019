@@ -29,6 +29,7 @@ static int longestIncreasingSubsequence(int[] arr) {
     
     
     Time Complexity is O(2^n).
+    Can be improved further to O(nlogn)
     
     
     
