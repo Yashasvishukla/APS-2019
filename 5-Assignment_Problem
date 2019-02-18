@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include<limits.h>
+#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
+int count_set(int i){
+   int result=0;
+    while(i){
+        result+=1;
+        i=i&(i-1);
+    }
+    return result;
+}
+
+
+
+
+int assignment(int * arr,int N){
+    int set_size=pow(2,N);
+    int dp[set_size];
+    dp[0]=0;
+    int x=0;
+    for(int i=1;i<set_size;i++)
+        dp[i]=INT_MAX;
+    for(int i=0;i<set_size;i++){
+         x=count_set(i);
+        printf("x is %d\n\n",x);
+        for(int j=0;j<N;j++){
+        //check for the set bits in x
+
+            if((i&(1<<j))==0){
+                //we are using OR operation because we want the generated digit
+                dp[(i|(1<<j))]=min(dp[(i|(1<<j))],*((arr+N*x)+j)+dp[i]);
+
+            }
+
+        }
+    }
+
+    return dp[set_size-1];
+
+
+
+
+
+}
+
+int main() {
+    int assign [3][3];
+    int N;
+    scanf("%d",&N);
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            scanf("%d",&assign[i][j]);
+        }
+    }
+    int res=assignment(assign,N);
+    printf("%d",res);
+
+    return 0;
+}
