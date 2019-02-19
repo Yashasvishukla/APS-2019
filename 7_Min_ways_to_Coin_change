@@ -1,0 +1,49 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MIn_number_of_Ways_coin_change {
+
+    public static void main(String[] args) {
+        Scanner scan= new Scanner(System.in);
+        int t=0;
+        long n=0;
+        long v=0;
+        if(scan.hasNextInt())
+            t=scan.nextInt();
+        for(int i=0;i<t;i++){
+            if(scan.hasNextLong())
+                v=scan.nextLong();
+            if(scan.hasNextLong())
+                n=scan.nextLong();
+            long arr[]=new long[(int)n];
+            for(long j=0;j<arr.length;j++){
+                if(scan.hasNextLong())
+                arr[(int)j]=scan.nextLong();
+            }
+            System.out.println( getways(arr,v,n));
+
+        }
+    }
+
+    public static long getways(long arr[],long v,long n){
+        long brr[]=new long [(int)v+1];
+        Arrays.fill(brr,Long.MAX_VALUE);
+        brr[0]=0;
+        
+        for(long i=1;i<brr.length;i++){                      
+
+            for(long j=0;j<arr.length;j++){
+                if(arr[(int)j]<=i){                                     //if the denomination is greater than the cost we computing (ignore the case)
+                    long sub_res=brr[(int)(i-arr[(int)j])];                  
+                    if(sub_res!=Long.MAX_VALUE&&(sub_res+1)<brr[(int)i]){         //for min ways we are checking the sub_res+1 < brr[i] else it means there is already min way to reach that cost
+                        brr[(int )i ]=sub_res+1;
+                    }
+                }
+            }
+        }
+        
+        if(brr[brr.length-1]==Long.MAX_VALUE)                    //if there exit no ways for change retrun -1
+            return -1;
+        return brr[brr.length-1];
+    }
+}
