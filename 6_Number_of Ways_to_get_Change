@@ -1,0 +1,43 @@
+
+//Logic Behind The approch is same as Using 3-5-10 getting sum as 15 
+//If the denomination cost is greater than the m(change coin) then do not proceed...
+ 
+
+
+
+import java.util.Arrays;
+
+public class CoinChangeProblem {
+    public static void main(String[] args) {
+        long arr[]={49, 9, 40, 17, 46, 24, 42, 26, 43, 41, 35, 1 ,47, 28, 20, 38, 2 ,44, 32, 22, 18, 45,25};
+       // long arr[] = {2,5,3,6};
+        System.out.println(getWays(10,arr));
+    }
+
+
+
+
+
+
+static long getWays(long n, long[] c) {
+        long arr [] = new long [(int)n+1];
+        Arrays.fill(arr,0);
+        arr[0]=1;
+        int k=0;
+      for(int i=0;i<c.length;i++){
+          for(int j=0;j<arr.length-c[i];j++){
+              if(c[i]>n){
+                  break;
+              }
+              arr[(int)(j+c[i])]+=arr[j];
+          }
+
+
+      }
+
+        System.out.println(arr[arr.length-1]);
+
+
+  }
+  
+  }
