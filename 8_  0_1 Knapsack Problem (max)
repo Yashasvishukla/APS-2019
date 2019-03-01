@@ -1,0 +1,43 @@
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Scanner;
+
+public class pick_your_bag {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n=0;
+        int c=0;
+        if(scan.hasNextInt())
+            n=scan.nextInt();
+        int id[] = new int[n+1];
+        int w[] = new int[n+1];
+        int v[]= new int [n+1];
+        for(int i=1;i<=n;i++){
+            if(scan.hasNextInt())
+                id[i]=scan.nextInt();
+            if(scan.hasNextInt())
+                w[i]=scan.nextInt();
+            if(scan.hasNextInt())
+                v[i]=scan.nextInt();
+
+        }
+
+
+        if(scan.hasNextInt())
+            c=scan.nextInt();
+
+        long arr[][] = new long[id.length][c+1];
+        for(int k=1;k<arr.length;k++){
+            for(int l=1;l<arr[k].length;l++){
+                if(l<w[k]){                                                //If the weight is greater than index value just copy the above computed value
+
+                    arr[k][l]=arr[k-1][l];
+                }
+               else
+                   arr[k][l]=Math.max(arr[k-1][l-w[k]]+v[k],arr[k-1][l]);  // Compare if we include the item what is the value then if we don't include
+
+            }
+        }
+        System.out.println(arr[id.length-1][c]);              // It just give the cost      Printing items is remaining ......
+    }
+}
