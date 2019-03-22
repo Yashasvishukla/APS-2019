@@ -1,0 +1,17 @@
+################## DFS Method ##################
+
+
+
+  public void dfs_recursive(vertex rootvertex){
+        System.out.println(rootvertex);
+
+        for(vertex v :rootvertex.getNeighbour()){
+            if(v.isVisited()){
+                v.setVisited(true);
+                dfs_recursive(v);
+            }
+        }
+    
+
+
+    }
