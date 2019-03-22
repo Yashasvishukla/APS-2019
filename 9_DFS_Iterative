@@ -1,0 +1,133 @@
+###Vertev class
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class vertex {
+    private String name;
+    private boolean visited;
+    List<vertex> neighbour;
+
+    public vertex(String name){
+        this.name=name;
+        this.neighbour=new ArrayList<>();
+    }
+
+
+    public List<vertex> getNeighbour() {
+        return neighbour;
+    }
+
+
+
+    public boolean isVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void addneighbour(vertex v){
+        this.neighbour.add(v);
+    }
+
+    @Override
+    public String toString() {
+        return name;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+############################DFS class ####################################
+import java.util.List;
+import java.util.Stack;
+
+public class DFS {
+    Stack<vertex> stack;
+
+    public DFS() {
+        this.stack = new Stack<>();
+    }
+
+    public void dfs(List<vertex> vertexlist ){
+
+        for(vertex v : vertexlist){
+
+            if(!v.isVisited()){
+                v.setVisited(true);
+                dfs_stack(v);
+
+            }
+        }
+    }
+
+    public void dfs_stack(vertex rootvertex){
+       this.stack.add(rootvertex);
+        rootvertex.setVisited(true);
+        while (!stack.isEmpty()) {
+            vertex actualvertex = this.stack.pop();
+            System.out.println(actualvertex);
+            for (vertex v : actualvertex.getNeighbour()) {
+                if (!v.isVisited()) {
+                    v.setVisited(true);
+                    this.stack.push(v);
+                }
+            }
+        }
+    }
+}
+
+
+
+#################################### main #######################
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class app {
+    public static void main(String[] args) {
+        vertex v1 = new vertex("1");
+        vertex v2 = new vertex("2");
+        vertex v3 = new vertex("3");
+        vertex v4 = new vertex("4");
+        vertex v5 = new vertex("5");
+        List<vertex> list = new ArrayList<>();
+
+        v1.addneighbour(v2);
+        v1.addneighbour(v3);
+        v3.addneighbour(v4);
+        v4.addneighbour(v5);
+
+
+
+
+        list.add(v1);
+        list.add(v2);
+        list.add(v3);
+        list.add(v4);
+        list.add(v5);
+        System.out.println(list);
+
+        DFS dfs = new DFS();
+        dfs.dfs(list);
+
+    }
+}
