@@ -1,0 +1,14 @@
+
+
+
+
+// Java method  taking array as input 
+
+static int lonelyinteger(int[] a) {
+    int res=a[0];
+        for(int i=1;i<a.length;i++){
+        res=(res^a[i]);
+            System.out.println(res);
+    }
+return res;
+    }
