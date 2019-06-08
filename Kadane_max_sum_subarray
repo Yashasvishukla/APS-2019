@@ -1,0 +1,26 @@
+public class Kadane_Max_sum_subArray {
+    public static void main(String[] args) {
+        int arr[] ={1,-50,10,-40,1,50,4,8,7,8,9,-10};
+        System.out.println(KADANE(arr));
+    }
+
+
+// Idea is to calculate the sum if the sum value is less than or equal to zero make current sum equal zero and keep track of max sum so far
+
+    public  static int KADANE(int arr[]){
+        int curr_max_ending=0;
+        int best_so_far=0;
+
+        for(int i=0;i<arr.length;i++){
+            curr_max_ending+=arr[i];
+            if(curr_max_ending<0)
+                curr_max_ending=0;
+
+            if(curr_max_ending>best_so_far)
+                best_so_far=curr_max_ending;
+
+        }
+
+        return best_so_far;
+    }
+}
