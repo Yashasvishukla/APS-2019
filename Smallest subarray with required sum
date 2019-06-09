@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Smallest_subArray_with_given_sum {
+    public static void main(String[] args) {
+        List<Integer> arr= new ArrayList<>();
+
+        arr.add(23);
+        arr.add(53);
+        arr.add(74);
+        arr.add(92);
+        arr.add(96);
+
+        System.out.println(max_small_subarray(arr,200));
+    }
+    public static ArrayList<Integer> max_small_subarray(List<Integer> input, int sum){
+        int cur_sum=0;
+        int start=0,end=0;
+        int n=input.size();
+        int length=n;
+        int s=0,e=0;
+        while(end<n){
+            while(cur_sum<=sum  &&end<n){
+                cur_sum+=input.get(end);
+                end++;
+            }
+
+         while(cur_sum>sum && start<n){
+             if((end-start)<length){
+                 length=end-start;
+                 s=start;
+                 e=end;
+             }
+
+             cur_sum-=input.get(start);
+             start++;
+         }
+
+        }
+
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=s;i<e;i++){
+            list.add(input.get(i));
+        }
+
+        return list;
+    }
+}
