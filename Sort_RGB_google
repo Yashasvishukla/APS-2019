@@ -1,0 +1,33 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Problem_17 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        char arr[] = {'B','B','R','R','B','G'};
+        RGB(arr);
+    }
+    public static void RGB(char [] input){
+        HashMap<Character,Integer> map = new HashMap<>();
+        map.put('R',0);
+        map.put('G',0);
+        map.put('B',0);
+
+        for(int i=0;i<input.length;i++){
+            int value=map.get(input[i]);
+            map.put(input[i],++value);
+        }
+
+        System.out.println(map);
+
+        for(int i=0;i<map.get('R');i++)
+            System.out.print("R ");
+
+        for(int i=0;i<map.get('G');i++)
+            System.out.print("G ");
+
+        for(int i=0;i<map.get('B');i++)
+            System.out.print("B ");
+    }
+
+}
