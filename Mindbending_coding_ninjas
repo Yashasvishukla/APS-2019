@@ -1,0 +1,64 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Mindbending_Product {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int n=0;
+        n=scan.nextInt();
+        int arr[] =new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=scan.nextInt();
+        }
+        long res[] ;
+        res= mind_prod2(arr);
+        for(int i=0;i<n;i++){
+            System.out.print(res[i]+" ");
+        }
+    }
+
+
+    //My solution but it can be modified to O(n) time and O(1) space
+
+    public static int[] mind_prod(int arr[]){
+        int prev_prod=1;
+        int curr_prod=1;
+        int n=arr.length;
+        int res[]=new int[n];
+        for(int i=0;i<n;i++){
+            if(i!=0)
+                curr_prod*=arr[i-1];
+            for(int j=i+1;j<n;j++){
+                prev_prod*=arr[j];
+            }
+
+            res[i]=curr_prod*prev_prod;
+            prev_prod=1;
+            System.out.println(res[i]);
+        }
+        return res;
+    }
+
+
+
+
+    public static long[] mind_prod2(int arr[]){
+        int n=arr.length;
+        long res[] = new long[n];
+        long left_prod=1;
+        long right_prod=1;
+        Arrays.fill(res,1);
+        for(int i=1;i<n;i++){
+                res[i]=res[i-1]*arr[i-1];
+        }
+        for(int i=n-2;i>=0;i--){
+            right_prod*=arr[i+1];
+            res[i]=res[i]*right_prod;
+        }
+
+
+
+    return res;
+    }
+
+}
