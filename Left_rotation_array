@@ -1,0 +1,35 @@
+import java.util.Scanner;
+
+public class left_rotation {
+    public static void main(String[] args) {
+        int t=0,n=0;
+        Scanner scan = new Scanner(System.in);
+        t=scan.nextInt();
+        while (t-->0){
+            n=scan.nextInt();
+            int arr[] = new int[n];
+            for (int i=0;i<n;i++){
+                arr[i]=scan.nextInt();
+            }
+            int k=0;
+            k=scan.nextInt();
+            int res[] =new int[n];
+            for(int i=0;i<n;i++){
+                if((i-k)<0){
+                    res[n-(k-i)]=arr[i];
+                }
+                else{
+                    res[i-k]=arr[i];
+                }
+            }
+
+            for (int i:res
+                 ) {
+                System.out.print(i+" ");
+
+            }
+            System.out.println();
+        }
+
+    }
+}
