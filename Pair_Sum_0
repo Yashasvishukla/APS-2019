@@ -1,0 +1,51 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Scanner;
+
+// Naive  Approach is to sort the array and traverse the array till negative values...but
+// due to input size constraint it can fail
+
+
+// Fantastic approach is to create hashmap and store the frequency and check for negative key
+// if found than print the pair
+
+public class pair_sum_0 {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int arr[]={-2,2,6,-2,2,-6,3};
+        PairSum(arr);
+    }
+    public static void PairSum(int[] input) {
+        Arrays.sort(input);
+        HashMap<Integer,Integer> map = new HashMap<>();
+        // Count the frequnecy
+        for(int i=0;i<input.length;i++){
+        if(map.containsKey(input[i])){
+            int value = map.get(input[i]);
+            map.put(input[i],++value);
+        }else{
+            map.put(input[i],1);
+        }
+        }
+
+
+
+        for(int i=0;i<input.length;i++){
+            int key = input[i];
+
+            if(map.containsKey(-key) && map.get(-key)!=0){
+                int times = map.get(-key)*map.get(key);
+                for(int j=0;j<times;j++){
+                    System.out.println(Math.min(key,-key)+" "+ Math.max(key,-key));
+                }
+
+            }
+
+            map.put(key,0);
+            map.put(-key,0);
+        }
+
+
+
+    }
+}
