@@ -33,7 +33,7 @@ public class pair_sum_0 {
         for(int i=0;i<input.length;i++){
             int key = input[i];
 
-            if(map.containsKey(-key) && map.get(-key)!=0){
+            if(map.containsKey(-key) && map.get(key)!=0){
                 int times = map.get(-key)*map.get(key);
                 for(int j=0;j<times;j++){
                     System.out.println(Math.min(key,-key)+" "+ Math.max(key,-key));
