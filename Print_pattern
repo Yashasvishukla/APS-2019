@@ -1,0 +1,40 @@
+public class check {
+    public static void main(String[] args) {
+     printPattern(11);
+    }
+
+    public static void printPattern(int n){
+        int arr[][] = new int[n][n];
+        int count=1;
+        for(int i=0;i<n/2;i++){
+            for(int j=0;j<n;j++){
+                arr[i][j]=count;
+                arr[n-1-i][j]=count+n;
+                count++;
+            }
+            count+=n;
+        }
+        if(n%2!=0){
+            for(int i=0;i<n;i++){
+                arr[n/2][i]=count++;
+            }
+        }
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+
+
+
+pattern ...............
+
+ 1    2   3    4   5
+ 11   12  13   14  15
+ 21   22  23   24  25
+ 16   17  18   19  20
+ 6    7    8   9   10
