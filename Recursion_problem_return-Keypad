@@ -44,3 +44,91 @@ int keypad(int num, string output[]){
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Improvised Version
+
+
+
+import java.util.HashMap;
+
+public class Return_Keypad {
+    public static void main(String[] args) {
+        String output [] = new String [10000];
+      int count=  keypad(254,output);
+        System.out.println(count);
+       for(int i=0;i<count;i++){
+           System.out.println(output[i]);
+       }
+    }
+
+
+    public static String getString(int n){
+        HashMap<Integer,String> map = new HashMap<>();
+        map.put(2,"abc");
+        map.put(3,"def");
+        map.put(4,"ghi");
+        map.put(5,"jkl");
+        map.put(6,"mno");
+        map.put(7,"pqrs");
+        map.put(8,"tuv");
+        map.put(9,"wxyz");
+
+        return map.get(n);
+    }
+
+
+
+    public static int keypad(int num ,String [] output){
+        if(num==0){
+            output[0]="";
+            return 1;
+        }
+
+        int lastDigit = num%10;
+        int smallDigit= num/10;
+        int smallDigitSize = keypad(smallDigit,output);
+        String option = getString(lastDigit);
+        // COPY the Above Iterations
+
+        for(int i =0;i<option.length()-1;i++){
+            for(int j=0;j<smallDigitSize;j++){
+                output[j + (i+1)*smallDigitSize]=output[j];
+            }
+        }
+
+        int k=0;
+        for(int i=0;i<option.length();i++){
+            for(int j=0;j<smallDigitSize;j++){
+                output[k] = output[k]+option.charAt(i);
+            k++;
+            }
+
+        }
+
+        return option.length()*smallDigitSize ;
+    }
+
+
+}
+
